@@ -11,14 +11,25 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
+
+Auth::routes();
+
+
+
+Route::get('/home', 'HomeController@index')->name('home');
+
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+// ROUTE ACCESSIBILI SOLO AL PROFILO ADMIN: oltre a dover essere loggato perché estende AdminController, è in un  //
+// groupMiddleware che verifica se sono Admin                                                                     //
+////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
+
+Route::group(['middleware' => ['admin']], function () {
+
+		Route::resource('admin/associazioni', 'Admin\AssociazioniController');
+		Route::resource('admin/volontari', 'Admin\VolontariController');
+
 });
 
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
-
-Auth::routes();
-
-Route::get('/home', 'HomeController@index')->name('home');
+	//////////////////////////////////////////////////
+	// fine ROUTE ACCESSIBILI SOLO AL PROFILO ADMIN	//
+	/////////////////////////////////////////////////

@@ -26,4 +26,13 @@ class User extends Authenticatable
     protected $hidden = [
         'password', 'remember_token',
     ];
+
+
+
+    public function associazione()
+      { 
+          // the Associazione model is automatically assumed to have a user_id foreign key
+          return $this->hasOne('App\Associazione','user_id','id');
+      }
+
 }
