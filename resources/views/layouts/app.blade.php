@@ -11,7 +11,13 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/app.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/ionicons.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/AdminLTE.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/blue.css') }}" rel="stylesheet">
+
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
 <body>
     <div id="app">
@@ -73,8 +79,17 @@
 
         @yield('content')
     </div>
-
+    
     <!-- Scripts -->
-    <script src="{{ asset('js/app.js') }}"></script>
+    
+    <!-- jQuery 3 -->
+    <script src="{{ asset('js/jquery.js') }}"></script>
+    <!-- Bootstrap 3.3.7 -->
+    <script src="{{ asset('js/bootstrap.js') }}"></script>
+    <!-- iCheck -->
+    <script src="{{ asset('js/icheck.js') }}"></script>
+
+    @yield('script_footer')
+
 </body>
 </html>
