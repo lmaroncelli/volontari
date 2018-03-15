@@ -11,73 +11,31 @@
     <title>{{ config('app.name', 'Laravel') }}</title>
 
     <!-- Styles -->
-    <link href="{{ asset('css/bootstrap.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/font-awesome.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/ionicons.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/AdminLTE.css') }}" rel="stylesheet">
-    <link href="{{ asset('css/blue.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/bootstrap.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/font-awesome.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/ionicons.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/AdminLTE.min.css') }}" rel="stylesheet">
+    <link href="{{ asset('css/skins/skin-blue.min.css') }}" rel="stylesheet">
 
     <link rel="stylesheet" href="https://fonts.googleapis.com/css?family=Source+Sans+Pro:300,400,600,700,300italic,400italic,600italic">
 </head>
-<body>
-    <div id="app">
-        <nav class="navbar navbar-default navbar-static-top">
-            <div class="container">
-                <div class="navbar-header">
+<body class="hold-transition skin-blue sidebar-mini">
+    <div class="wrapper">
+        
+        @include('layouts.header')
 
-                    <!-- Collapsed Hamburger -->
-                    <button type="button" class="navbar-toggle collapsed" data-toggle="collapse" data-target="#app-navbar-collapse" aria-expanded="false">
-                        <span class="sr-only">Toggle Navigation</span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                        <span class="icon-bar"></span>
-                    </button>
+        @include('layouts.sidebar')
+        
+        <!-- Content Wrapper. Contains page content -->
+        <div class="content-wrapper">
+            @yield('briciole','')
 
-                    <!-- Branding Image -->
-                    <a class="navbar-brand" href="{{ url('/') }}">
-                        {{ config('app.name', 'Laravel') }}
-                    </a>
-                </div>
-
-                <div class="collapse navbar-collapse" id="app-navbar-collapse">
-                    <!-- Left Side Of Navbar -->
-                    <ul class="nav navbar-nav">
-                        &nbsp;
-                    </ul>
-
-                    <!-- Right Side Of Navbar -->
-                    <ul class="nav navbar-nav navbar-right">
-                        <!-- Authentication Links -->
-                        @guest
-                            <li><a href="{{ route('login') }}">Login</a></li>
-                            <li><a href="{{ route('register') }}">Register</a></li>
-                        @else
-                            <li class="dropdown">
-                                <a href="#" class="dropdown-toggle" data-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" v-pre>
-                                    {{ Auth::user()->name }} <span class="caret"></span>
-                                </a>
-
-                                <ul class="dropdown-menu">
-                                    <li>
-                                        <a href="{{ route('logout') }}"
-                                            onclick="event.preventDefault();
-                                                     document.getElementById('logout-form').submit();">
-                                            Logout
-                                        </a>
-
-                                        <form id="logout-form" action="{{ route('logout') }}" method="POST" style="display: none;">
-                                            {{ csrf_field() }}
-                                        </form>
-                                    </li>
-                                </ul>
-                            </li>
-                        @endguest
-                    </ul>
-                </div>
-            </div>
-        </nav>
-
-        @yield('content')
+            <!-- Main content -->    
+            @yield('content')
+            
+            @include('layouts.footer')
+        
+        </div>   <!-- /.content-wrapper -->
     </div>
     
     <!-- Scripts -->
@@ -86,8 +44,8 @@
     <script src="{{ asset('js/jquery.js') }}"></script>
     <!-- Bootstrap 3.3.7 -->
     <script src="{{ asset('js/bootstrap.js') }}"></script>
-    <!-- iCheck -->
-    <script src="{{ asset('js/icheck.js') }}"></script>
+   <!-- AdminLTE App -->
+    <script src="{{ asset('js/adminlte.min.js') }}"></script>
 
     @yield('script_footer')
 
