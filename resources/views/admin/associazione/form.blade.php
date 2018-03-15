@@ -5,9 +5,9 @@
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
 	  @if ($asso->exists)
-	  	<h1>Modifica</h1>
+	  	<h1>Modifica Associazione</h1>
 	  @else
-	  	<h1>Crea</h1>
+	  	<h1>Crea Nuova Associazione</h1>
 	  @endif
 	  <ol class="breadcrumb">
 	    <li><a href="#"><i class="fa fa-dashboard"></i> Top</a></li>
@@ -17,39 +17,25 @@
 @endsection
 
 
-@section('contemt')
-	<section class="content container-fluid">
-	    <div class="row">
-	        <div class="col-md-12">
-	        	<form role="form">
-	        	  <div class="box-body">
-	        	    <div class="form-group">
-	        	      <label for="exampleInputEmail1">Email address</label>
-	        	      <input type="email" class="form-control" id="exampleInputEmail1" placeholder="Enter email">
-	        	    </div>
-	        	    <div class="form-group">
-	        	      <label for="exampleInputPassword1">Password</label>
-	        	      <input type="password" class="form-control" id="exampleInputPassword1" placeholder="Password">
-	        	    </div>
-	        	    <div class="form-group">
-	        	      <label for="exampleInputFile">File input</label>
-	        	      <input type="file" id="exampleInputFile">
-
-	        	      <p class="help-block">Example block-level help text here.</p>
-	        	    </div>
-	        	    <div class="checkbox">
-	        	      <label>
-	        	        <input type="checkbox"> Check me out
-	        	      </label>
-	        	    </div>
-	        	  </div>
-	        	  <!-- /.box-body -->
-
-	        	  <div class="box-footer">
-	        	    <button type="submit" class="btn btn-primary">Submit</button>
-	        	  </div>
-	        	</form>
-	        </div>
-	    </div>
-	</section>
+@section('content')
+    <div class="row">
+      <!-- left column -->
+      <div class="col-md-6">
+        <!-- general form elements -->
+        <div class="box box-primary">
+	        <form role="form" action="{{ route('associazioni.store') }}" method="POST">
+	        	{!! csrf_field() !!}
+				<div class="box-body">
+					<div class="form-group">
+					  <label for="nome">Nome</label>
+					  <input type="nome" class="form-control" name="nome" id="nome" placeholder="nome" value="{{$asso->nome}}">
+					</div>
+				</div> <!-- /.box-body -->
+				<div class="box-footer">
+				<button type="submit" class="btn btn-primary">Crea</button>
+				</div>
+        	</form>
+      	</div> <!-- /.box -->
+      </div><!-- /.col -->
+     </div> <!-- /.row -->
 @endsection

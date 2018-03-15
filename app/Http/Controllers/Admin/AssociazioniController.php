@@ -38,7 +38,7 @@ class AssociazioniController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+      dd($request->all());
     }
 
     /**

@@ -31,12 +31,14 @@
             @yield('briciole','')
 
             <!-- Main content -->    
-            @yield('content')
-            
-            @include('layouts.footer')
-        
+            <section class="content container-fluid">
+                @yield('content')
+            </section>
         </div>   <!-- /.content-wrapper -->
-    </div>
+        @include('layouts.footer')
+        @include('layouts.aside')
+        <div class="control-sidebar-bg"></div>
+    </div> <!-- ./wrapper -->
     
     <!-- Scripts -->
     
