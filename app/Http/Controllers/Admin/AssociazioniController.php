@@ -16,7 +16,9 @@ class AssociazioniController extends AdminController
      */
     public function index()
     {
-        echo "ciao";
+        $assos = Associazione::all();
+        return view('admin.associazione.index', compact('assos'));
+
     }
 
     /**
@@ -38,9 +40,12 @@ class AssociazioniController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function store(AssociazioneRequest $request)
-    {
-      dd($request->all());
-    }
+        {
+        Associazione::create($request->all());
+        
+        return redirect('admin/associazioni');  
+
+        }
 
     /**
      * Display the specified resource.
@@ -60,9 +65,11 @@ class AssociazioniController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function edit($id)
-    {
-        //
-    }
+      {
+      $asso = Associazione::find($id);
+
+      return view('admin.associazione.form', compact('asso'));
+      }
 
     /**
      * Update the specified resource in storage.
@@ -71,10 +78,15 @@ class AssociazioniController extends AdminController
      * @param  int  $id
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, $id)
-    {
-        //
-    }
+    public function update(AssociazioneRequest $request, $id)
+      {
+
+      $asso = Associazione::find($id);
+      $asso->nome = $request->get('nome');
+      $asso->save();
+
+      return redirect('admin/associazioni');  
+      }
 
     /**
      * Remove the specified resource from storage.

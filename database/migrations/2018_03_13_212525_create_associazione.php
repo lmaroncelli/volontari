@@ -16,7 +16,7 @@ class CreateAssociazione extends Migration
         Schema::create('tblAssociazioni', function (Blueprint $table) {
             $table->increments('id');
             $table->string('nome')->default('');
-            $table->integer('user_id')->unsigned();
+            $table->integer('user_id')->unsigned()->nullable()->default(null);
             $table->timestamps();
         });
     }
