@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Associazione;
 use App\Http\Controllers\Admin\AdminController;
 use Illuminate\Http\Request;
 
@@ -23,9 +24,11 @@ class AssociazioniController extends AdminController
      * @return \Illuminate\Http\Response
      */
     public function create()
-    {
-        //
-    }
+      {
+      $asso = new Associazione;
+
+      return view('admin.associazione.form', compact('asso'));
+      }
 
     /**
      * Store a newly created resource in storage.
