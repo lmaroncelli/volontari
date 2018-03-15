@@ -15,6 +15,9 @@
 Auth::routes();
 
 
+// la home diventa il mio loginForm
+Route::get('/','Auth\LoginController@showLoginForm');
+
 
 Route::get('/home', 'HomeController@index')->name('home');
 

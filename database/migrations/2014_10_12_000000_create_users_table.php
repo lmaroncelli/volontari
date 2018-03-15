@@ -21,6 +21,16 @@ class CreateUsersTable extends Migration
             $table->rememberToken();
             $table->timestamps();
         });
+
+
+        /*
+         * Lego la migration con il suo seed eseguendolo da dentro la migration
+         * http://stackoverflow.com/questions/12736120/populating-a-database-in-a-laravel-migration-file
+         */
+        Artisan::call( 'db:seed', [
+            '--class' => 'UserSeeder',
+            '--force' => true
+        ]);
     }
 
     /**
