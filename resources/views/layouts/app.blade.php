@@ -32,6 +32,7 @@
 
             <!-- Main content -->    
             <section class="content container-fluid">
+                @include('layouts.errors')
                 @yield('content')
             </section>
         </div>   <!-- /.content-wrapper -->

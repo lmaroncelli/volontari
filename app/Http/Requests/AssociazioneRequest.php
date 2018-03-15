@@ -23,8 +23,9 @@ class AssociazioneRequest extends FormRequest
      */
    public function rules()
        {
+
        $rules =  [
-               "nome" => ["required","max_character:".BambiniGratisController::LIMIT_TESTO],
+               "nome" => ["required"],
                ];  
 
        return $rules;
@@ -33,10 +34,12 @@ class AssociazioneRequest extends FormRequest
 
    public function messages() 
        {
+
        $messages =  [
-               "note.max_character" => "Il campo note può contenere al massimo ".BambiniGratisController::LIMIT_TESTO." caratteri",
-               "note.offer_message_spam" => "Il testo dell'offferta NON deve contenere INDIRIZZI EMAIL, INDIRIZZI INTERNET o NUMERI DI TELEFONO",
+               "nome.required" => "Il campo nome è obbligatorio",
                ];
+
         return $messages;
+
        }
 }

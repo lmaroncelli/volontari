@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Associazione;
 use App\Http\Controllers\Admin\AdminController;
+use App\Http\Requests\AssociazioneRequest;
 use Illuminate\Http\Request;
 
 class AssociazioniController extends AdminController
@@ -36,7 +37,7 @@ class AssociazioniController extends AdminController
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(AssociazioneRequest $request)
     {
       dd($request->all());
     }
