@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers\Admin;
 
+use App\Associazione;
 use App\Http\Controllers\Admin\AdminController;
+use App\Volontario;
 use Illuminate\Http\Request;
 
 class VolontariController extends AdminController
@@ -24,7 +26,9 @@ class VolontariController extends AdminController
      */
     public function create()
     {
-        //
+    $assos = Associazione::all()->pluck('nome', 'id')->toArray();
+    $volo = new Volontario;
+    return view('admin.volontario.form', compact('volo','assos'));
     }
 
     /**

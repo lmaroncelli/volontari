@@ -29,11 +29,14 @@
     <!-- /.search form -->
 
     <!-- Sidebar Menu -->
+
+
+    {{-- ASSOCIAZIONE --}}
     <ul class="sidebar-menu" data-widget="tree">
       <li class="header">HEADER</li>
       
       <li class="treeview">
-        <a href="#"><i class="fa fa-link"></i> <span>Associazione</span>
+        <a href="#"><i class="fa fa-link"></i> <span>Associazioni</span>
           <span class="pull-right-container">
               <i class="fa fa-angle-left pull-right"></i>
             </span>
@@ -41,6 +44,19 @@
         <ul class="treeview-menu">
           <li><a href="{{ route('associazioni.index') }}">Elenco</a></li>
           <li><a href="{{ route('associazioni.create') }}">Nuova</a></li>
+        </ul>
+      </li>
+
+    {{-- VOLONTARI --}}
+      <li class="treeview">
+        <a href="#"><i class="fa fa-link"></i> <span>Volontari</span>
+          <span class="pull-right-container">
+              <i class="fa fa-angle-left pull-right"></i>
+            </span>
+        </a>
+        <ul class="treeview-menu">
+          <li><a href="{{ route('volontari.index') }}">Elenco</a></li>
+          <li><a href="{{ route('volontari.create') }}">Nuovo</a></li>
         </ul>
       </li>
     </ul>
