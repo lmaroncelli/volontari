@@ -30,9 +30,11 @@ class VolontariController extends AdminController
     public function create()
     {
     $assos = Associazione::all()->pluck('nome', 'id')->toArray();
+
     $volontario = new Volontario;
 
     return view('admin.volontari.form', compact('volontario','assos'));
+
     }
 
     /**
@@ -52,6 +54,7 @@ class VolontariController extends AdminController
     $volontario->save();
 
     return redirect('admin/volontari')->with('status', 'Volontario creato correttamente!');  
+
     }
 
     /**
@@ -106,6 +109,6 @@ class VolontariController extends AdminController
      */
     public function destroy($id)
     {
-
+        
     }
 }
