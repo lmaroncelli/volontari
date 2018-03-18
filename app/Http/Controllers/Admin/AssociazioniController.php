@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Associazione;
 use App\Http\Controllers\Admin\AdminController;
 use App\Http\Requests\AssociazioneRequest;
+use App\Volontario;
 use Illuminate\Http\Request;
 
 class AssociazioniController extends AdminController
@@ -17,7 +18,7 @@ class AssociazioniController extends AdminController
     public function index()
     {
         $assos = Associazione::all();
-        return view('admin.associazione.index', compact('assos'));
+        return view('admin.associazioni.index', compact('assos'));
 
     }
 
@@ -29,8 +30,7 @@ class AssociazioniController extends AdminController
     public function create()
       {
       $asso = new Associazione;
-
-      return view('admin.associazione.form', compact('asso'));
+      return view('admin.associazioni.form', compact('asso'));
       }
 
     /**
@@ -43,7 +43,7 @@ class AssociazioniController extends AdminController
         {
         Associazione::create($request->all());
         
-        return redirect('admin/associazioni');  
+        return redirect('admin/associazioni')->with('status', 'Associazione creata correttamente!');  
 
         }
 
@@ -67,8 +67,9 @@ class AssociazioniController extends AdminController
     public function edit($id)
       {
       $asso = Associazione::find($id);
-
-      return view('admin.associazione.form', compact('asso'));
+      $volontari = Volontario::pluck('nome', 'id');
+      $volontari_associati = $asso->volontari->pluck('id')->toArray();
+      return view('admin.associazioni.form', compact('asso','volontari','volontari_associati'));
       }
 
     /**
@@ -85,7 +86,7 @@ class AssociazioniController extends AdminController
       $asso->nome = $request->get('nome');
       $asso->save();
 
-      return redirect('admin/associazioni');  
+      return redirect('admin/associazioni')->with('status', 'Associazione modificata correttamente!');  
       }
 
     /**

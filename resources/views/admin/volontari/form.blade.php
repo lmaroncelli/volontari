@@ -14,7 +14,7 @@
 @section('briciole')
 	<!-- Content Header (Page header) -->
 	<section class="content-header">
-	  @if ($volo->exists)
+	  @if ($volontario->exists)
 	  	<h1>Modifica Volontario</h1>
 	  @else
 	  	<h1>Crea Nuova Volontario</h1>
@@ -33,8 +33,8 @@
       <div class="col-md-6">
         <!-- general form elements -->
         <div class="box box-primary">
-	  		@if ($volo->exists)
-	        	<form role="form" action="{{ route('volontari.update', $volo->id) }}" method="POST">
+	  		@if ($volontario->exists)
+	        	<form role="form" action="{{ route('volontari.update', $volontario->id) }}" method="POST">
 	        	{{ method_field('PUT') }}
 			@else
 	        	<form role="form" action="{{ route('volontari.store') }}" method="POST">
@@ -44,17 +44,17 @@
 					
 					<div class="form-group">
 					  <label for="nome">Nome</label>
-					  <input type="nome" class="form-control" name="nome" id="nome" placeholder="nome" value="{{$volo->nome}}">
+					  <input type="nome" class="form-control" name="nome" id="nome" placeholder="nome" value="{{$volontario->nome}}">
 					</div>
 					
 					<div class="form-group">
 					  <label for="cognome">Cognome</label>
-					  <input type="cognome" class="form-control" name="cognome" id="cognome" placeholder="cognome" value="{{$volo->cognome}}">
+					  <input type="cognome" class="form-control" name="cognome" id="cognome" placeholder="cognome" value="{{$volontario->cognome}}">
 					</div>
 
 					<div class="form-group">
 					  <label for="registro">Registro</label>
-					  <input type="registro" class="form-control" name="registro" id="registro" placeholder="registro" value="{{$volo->registro}}">
+					  <input type="registro" class="form-control" name="registro" id="registro" placeholder="registro" value="{{$volontario->registro}}">
 					</div>
 					<div class="form-group">
 					  <label for="data_nascita">Data di nascita</label>
@@ -62,7 +62,7 @@
 					    <div class="input-group-addon">
 					      <i class="fa fa-calendar"></i>
 					    </div>
-					    <input type="text" class="form-control pull-right" id="datepicker" name="data_nascita" id="data_nascita" value="{{$volo->data_nascita}}">
+					    <input type="text" class="form-control pull-right" id="datepicker" name="data_nascita" id="data_nascita" value="{{$volontario->data_nascita}}">
 					  </div>
 					  <!-- /.input group -->
 					</div>
@@ -76,23 +76,14 @@
 					  <label for="associazione_id">Associazione</label>
 					  <select class="form-control select2" style="width: 100%;" name="associazione_id" id="associazione_id">
 					    @foreach ($assos as $id => $nome)
-					    	<option value="{{$id}}">{{$nome}}</option>
+					    	<option value="{{$id}}" @if ($volontario->associazione_id == $id) selected="selected" @endif>{{$nome}}</option>
 					    @endforeach
 					  </select>
 					</div>
-
-
-
-
-					@if ($volo->exists)
-						<hr>
-						Associazione con i volontari
-						<hr>
-					@endif
 				</div> <!-- /.box-body -->
 				<div class="box-footer">
 				<button type="submit" class="btn btn-primary">
-					@if ($volo->exists)
+					@if ($volontario->exists)
 						Modifica
 					@else
 						Crea

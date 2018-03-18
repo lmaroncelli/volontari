@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Associazione;
 use App\Http\Controllers\Admin\AdminController;
 use App\Volontario;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class VolontariController extends AdminController
@@ -16,7 +17,9 @@ class VolontariController extends AdminController
      */
     public function index()
     {
-        echo "ciao";
+    $volontari = Volontario::all();
+
+    return view('admin.volontari.index', compact('volontari'));
     }
 
     /**
@@ -27,8 +30,9 @@ class VolontariController extends AdminController
     public function create()
     {
     $assos = Associazione::all()->pluck('nome', 'id')->toArray();
-    $volo = new Volontario;
-    return view('admin.volontario.form', compact('volo','assos'));
+    $volontario = new Volontario;
+
+    return view('admin.volontari.form', compact('volontario','assos'));
     }
 
     /**
@@ -39,7 +43,15 @@ class VolontariController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+    //dd($request->all());
+    
+    /////////////////////////////////////////////////////////////////////
+    // ho inserito il salvataggio della data come Carbon in un mutator //
+    /////////////////////////////////////////////////////////////////////
+    $volontario = Volontario::create($request->all());
+    $volontario->save();
+
+    return redirect('admin/volontari')->with('status', 'Volontario creato correttamente!');  
     }
 
     /**
@@ -61,7 +73,10 @@ class VolontariController extends AdminController
      */
     public function edit($id)
     {
-        //
+        $volontario = Volontario::find($id);
+        $assos = Associazione::all()->pluck('nome', 'id')->toArray();
+
+        return view('admin.volontari.form', compact('assos','volontario'));
     }
 
     /**
@@ -73,7 +88,14 @@ class VolontariController extends AdminController
      */
     public function update(Request $request, $id)
     {
-        //
+        $volontario = Volontario::find($id);
+        /////////////////////////////////////////////////////////////////////
+        // ho inserito il salvataggio della data come Carbon in un mutator //
+        /////////////////////////////////////////////////////////////////////
+        $volontario->fill($request->all());
+        $volontario->save();
+
+        return redirect('admin/volontari')->with('status', 'Volontario modificato correttamente!');  
     }
 
     /**
@@ -84,6 +106,6 @@ class VolontariController extends AdminController
      */
     public function destroy($id)
     {
-        //
+
     }
 }
