@@ -5,6 +5,7 @@ namespace App\Http\Controllers\Admin;
 use App\Associazione;
 use App\Http\Controllers\Admin\AdminController;
 use App\Volontario;
+use Carbon\Carbon;
 use Illuminate\Http\Request;
 
 class VolontariController extends AdminController
@@ -16,7 +17,9 @@ class VolontariController extends AdminController
      */
     public function index()
     {
-        echo "ciao";
+    $volontari = Volontario::all();
+
+    return view('admin.volontari.index', compact('volontari'));
     }
 
     /**
@@ -28,7 +31,7 @@ class VolontariController extends AdminController
     {
     $assos = Associazione::all()->pluck('nome', 'id')->toArray();
     $volo = new Volontario;
-    return view('admin.volontario.form', compact('volo','assos'));
+    return view('admin.volontari.form', compact('volo','assos'));
     }
 
     /**
@@ -39,7 +42,11 @@ class VolontariController extends AdminController
      */
     public function store(Request $request)
     {
-        //
+    //dd($request->all());
+    $volontario = Volontario::create($request->except('data_nascita'));
+    $volontario->data_nascita =  Carbon::createFromFormat('d/m/Y', $request->get('data_nascita'));
+    $volontario->save();
+    return redirect('admin/volontari');  
     }
 
     /**
@@ -84,6 +91,6 @@ class VolontariController extends AdminController
      */
     public function destroy($id)
     {
-        //
+    
     }
 }

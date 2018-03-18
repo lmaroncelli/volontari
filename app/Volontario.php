@@ -9,6 +9,11 @@ class Volontario extends Model
   
   protected $table = 'tblVolontari';
 
+  protected $guarded = ['id'];
+
+
+
+  protected $dates = ['data_nascita'];
 
 
   public function associazione()

@@ -18,9 +18,9 @@ class CreateVolontari extends Migration
             $table->integer('associazione_id')->unsigned();
             $table->string('nome')->default('');
             $table->string('cognome')->default('');
-            $table->text('nota')->default(null);
+            $table->text('nota')->nullable()->default(null);
             $table->string('registro')->default('');
-            $table->date('data_nascita')->default(null);
+            $table->date('data_nascita')->nullable()->default(null);
             $table->timestamps();
         });
     }

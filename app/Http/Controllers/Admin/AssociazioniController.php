@@ -17,7 +17,7 @@ class AssociazioniController extends AdminController
     public function index()
     {
         $assos = Associazione::all();
-        return view('admin.associazione.index', compact('assos'));
+        return view('admin.associazioni.index', compact('assos'));
 
     }
 
@@ -30,7 +30,7 @@ class AssociazioniController extends AdminController
       {
       $asso = new Associazione;
 
-      return view('admin.associazione.form', compact('asso'));
+      return view('admin.associazioni.form', compact('asso'));
       }
 
     /**
@@ -68,7 +68,7 @@ class AssociazioniController extends AdminController
       {
       $asso = Associazione::find($id);
 
-      return view('admin.associazione.form', compact('asso'));
+      return view('admin.associazioni.form', compact('asso'));
       }
 
     /**
