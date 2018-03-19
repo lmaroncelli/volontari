@@ -26,12 +26,12 @@ Route::get('/home', 'HomeController@index')->name('home');
 // groupMiddleware che verifica se sono Admin                                                                     //
 ////////////////////////////////////////////////////////////////////////////////////////////////////////////////////
 
-Route::group(['middleware' => ['admin']], function () {
+/*Route::group(['middleware' => ['admin']], function () {*/
 
 		Route::resource('admin/associazioni', 'Admin\AssociazioniController');
 		Route::resource('admin/volontari', 'Admin\VolontariController');
 
-});
+/*});*/
 
 	//////////////////////////////////////////////////
 	// fine ROUTE ACCESSIBILI SOLO AL PROFILO ADMIN	//
