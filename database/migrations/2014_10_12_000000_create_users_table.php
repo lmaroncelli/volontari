@@ -17,7 +17,7 @@ class CreateUsersTable extends Migration
             $table->increments('id');
             $table->enum('ruolo', ['admin', 'associazione'])->default('associazione');
             $table->string('name');
-            $table->string('email')->unique();
+            $table->string('email')->default('');
             $table->string('username')->unique();
             $table->string('password');
             $table->rememberToken();
@@ -29,10 +29,15 @@ class CreateUsersTable extends Migration
          * Lego la migration con il suo seed eseguendolo da dentro la migration
          * http://stackoverflow.com/questions/12736120/populating-a-database-in-a-laravel-migration-file
          */
-        Artisan::call( 'db:seed', [
+        
+        ///////////////////////////////////////////////
+        // inserisco gli utenti dopo le associazioni //
+        ///////////////////////////////////////////////
+
+        /*Artisan::call( 'db:seed', [
             '--class' => 'UserSeeder',
             '--force' => true
-        ]);
+        ]);*/
     }
 
     /**
