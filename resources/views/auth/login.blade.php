@@ -8,12 +8,12 @@
     <form method="POST" action="{{ route('login') }}">
     {{ csrf_field() }}
         
-        <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }} has-feedback">
-          <input type="email" class="form-control" placeholder="Email" name="email" value="{{ old('email') }}" required autofocus>
-          <span class="glyphicon glyphicon-envelope form-control-feedback"></span>
-          @if ($errors->has('email'))
+        <div class="form-group{{ $errors->has('username') ? ' has-error' : '' }} has-feedback">
+          <input type="username" class="form-control" placeholder="username" name="username" value="{{ old('username') }}" required autofocus>
+          <span class="glyphicon glyphicon-user form-control-feedback"></span>
+          @if ($errors->has('username'))
               <span class="help-block">
-                  <strong>{{ $errors->first('email') }}</strong>
+                  <strong>{{ $errors->first('username') }}</strong>
               </span>
           @endif
         </div>
@@ -46,7 +46,7 @@
     
 
     <!-- /.social-auth-links -->
-    <a href="{{ route('password.request') }}">Forgot Your Password?</a><br>
+    {{-- <a href="{{ route('password.request') }}">Forgot Your Password?</a><br> --}}
   
  </div>
   <!-- /.login-box-body -->
