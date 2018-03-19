@@ -26,5 +26,10 @@ class AssociazioniSeeder extends Seeder
     	DB::connection('mysql')->table('tblAssociazioni')->truncate();
     	DB::connection('mysql')->table('tblAssociazioni')->insert($new_asso);
 
+        Artisan::call( 'db:seed', [
+            '--class' => 'UserSeeder',
+            '--force' => true
+        ]);
+
     }
 }
