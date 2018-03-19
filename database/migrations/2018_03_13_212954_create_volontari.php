@@ -15,7 +15,7 @@ class CreateVolontari extends Migration
     {
         Schema::create('tblVolontari', function (Blueprint $table) {
             $table->increments('id');
-            $table->integer('associazione_id')->unsigned();
+            $table->integer('associazione_id')->unsigned()->default(0);
             $table->string('nome')->default('');
             $table->string('cognome')->default('');
             $table->text('nota')->nullable()->default(null);
@@ -23,6 +23,15 @@ class CreateVolontari extends Migration
             $table->date('data_nascita')->nullable()->default(null);
             $table->timestamps();
         });
+
+        /*
+         * Lego la migration con il suo seed eseguendolo da dentro la migration
+         * http://stackoverflow.com/questions/12736120/populating-a-database-in-a-laravel-migration-file
+         */
+        Artisan::call( 'db:seed', [
+            '--class' => 'VolontariSeeder',
+            '--force' => true
+        ]);
     }
 
     /**

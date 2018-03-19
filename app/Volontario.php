@@ -19,7 +19,15 @@ class Volontario extends Model
 
   public function setDataNascitaAttribute($value)
    	{
-    $this->attributes['data_nascita'] = Carbon::createFromFormat('d/m/Y', $value);
+    if ($value == '0000-00-00') 
+      {
+      $this->attributes['data_nascita'] = Carbon::today();
+      } 
+    else 
+      {
+      $this->attributes['data_nascita'] = Carbon::createFromFormat('d/m/Y', $value);
+      }
+    
    	}
 
   public function getDataNascitaAttribute($value)
