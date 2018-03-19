@@ -12,8 +12,6 @@ class Volontario extends Model
 
   protected $guarded = ['id'];
 
-
-
   protected $dates = ['data_nascita'];
 
 
@@ -41,5 +39,10 @@ class Volontario extends Model
   		return $this->belongsTo('App\Associazione','associazione_id','id');
   	}
 
+
+  public function getNomeAttribute($value)
+    {
+    return ucfirst(strtolower($value)) . ' ' . ucfirst(strtolower($this->cognome));
+    }
 
 	}

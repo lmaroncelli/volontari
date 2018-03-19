@@ -68,7 +68,7 @@ class AssociazioniController extends AdminController
       {
       $asso = Associazione::find($id);
 
-      $volontari = Volontario::pluck('nome', 'id');
+      $volontari = Volontario::get()->pluck('nome', 'id');
       $volontari_associati = $asso->volontari->pluck('id')->toArray();
       return view('admin.associazioni.form', compact('asso','volontari','volontari_associati'));
       
