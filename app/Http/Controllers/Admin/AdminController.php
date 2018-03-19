@@ -14,7 +14,6 @@ class AdminController extends BaseController
     function __construct()
     {
     	//$this->middleware('auth');
-
     }
 
 
